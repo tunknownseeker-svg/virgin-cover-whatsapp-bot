@@ -1,12 +1,5 @@
 from flask import Flask, request, jsonify
 import os
-
-app = Flask(__name__)
-
-@app.route("/")
-def home():
-from flask import Flask, request, jsonify
-import os
 import requests
 
 app = Flask(__name__)
@@ -148,7 +141,7 @@ def whatsapp():
                         selected_id = interactive["list_reply"]["id"]
 
                         if selected_id == "live_agent":
-                            send_text(from_number, f"💬 *Live Agent*\n\nPlease click the link below to chat with a live agent:\nhttps://wa.me/{971547263830}")
+                            send_text(from_number, f"💬 *Live Agent*\n\nPlease click the link below to chat with a live agent:\nhttps://wa.me/{LIVE_AGENT_NUMBER}")
                         elif selected_id in FAQ:
                             send_text(from_number, FAQ[selected_id]["answer"])
                             # After answering, show menu again
@@ -165,5 +158,5 @@ def whatsapp():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, threaded=True)
-
-    
+     
+     
