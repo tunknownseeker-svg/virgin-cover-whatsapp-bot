@@ -1,25 +1,27 @@
 from flask import Flask, request, jsonify
-import os  # Needed for Render port
+import os
 
 app = Flask(__name__)
+
+VERIFY_TOKEN = "1234567890"  # This must match Meta
 
 @app.route("/")
 def home():
     return "Virgin Cover Bot is running"
 
-@app.route("/whatsapp", methods=["GET","POST"])
+@app.route("/whatsapp", methods=["GET", "POST"])
 def whatsapp():
     if request.method == "GET":
-        # Verification token for Meta webhook
+        # Meta sends hub.challenge to verify webhook
         verify_token = request.args.get("hub.verify_token")
         challenge = request.args.get("hub.challenge")
-        if verify_token == "virginbot123":  # <-- Replace with your chosen token
-            return challenge
+        if verify_token == VERIFY_TOKEN and challenge:
+            return challenge  # Must return the challenge exactly
         return "Invalid verification token"
     else:
+        # Handle incoming messages here
         return jsonify(status="ok")
 
-# Updated for Render deployment
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # Use Render's assigned port or default 5000 locally
+    port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, threaded=True)
