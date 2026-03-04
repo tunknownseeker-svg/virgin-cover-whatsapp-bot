@@ -7,12 +7,12 @@ app = Flask(__name__)
 def home():
     return "Virgin Cover Bot is running"
 
-@app.route("/whatsapp", methods=["GET","POST"])
+@app.route("/whatsapp", methods=["GET", "POST"])
 def whatsapp():
     if request.method == "GET":
         verify_token = request.args.get("hub.verify_token")
         challenge = request.args.get("hub.challenge")
-        if verify_token == "mytoken123":  # replace with your chosen token
+        if verify_token == "123456789":
             return challenge
         return "Invalid verification token"
     else:
