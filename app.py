@@ -13,7 +13,7 @@ def whatsapp():
         # Verification token for Meta webhook
         verify_token = request.args.get("hub.verify_token")
         challenge = request.args.get("hub.challenge")
-        if verify_token == "mytoken123":  # <-- Replace with your chosen token
+        if verify_token == "virginbot123":  # <-- Replace with your chosen token
             return challenge
         return "Invalid verification token"
     else:
