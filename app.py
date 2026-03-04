@@ -148,7 +148,7 @@ def whatsapp():
                         selected_id = interactive["list_reply"]["id"]
 
                         if selected_id == "live_agent":
-                            send_text(from_number, f"💬 *Live Agent*\n\nPlease click the link below to chat with a live agent:\nhttps://wa.me/{LIVE_AGENT_NUMBER}")
+                            send_text(from_number, f"💬 *Live Agent*\n\nPlease click the link below to chat with a live agent:\nhttps://wa.me/{971547263830}")
                         elif selected_id in FAQ:
                             send_text(from_number, FAQ[selected_id]["answer"])
                             # After answering, show menu again
