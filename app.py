@@ -3,23 +3,19 @@ import os
 
 app = Flask(__name__)
 
-VERIFY_TOKEN = "1234567890"  # This must match Meta
-
 @app.route("/")
 def home():
     return "Virgin Cover Bot is running"
 
-@app.route("/whatsapp", methods=["GET", "POST"])
+@app.route("/whatsapp", methods=["GET","POST"])
 def whatsapp():
     if request.method == "GET":
-        # Meta sends hub.challenge to verify webhook
         verify_token = request.args.get("hub.verify_token")
         challenge = request.args.get("hub.challenge")
-        if verify_token == VERIFY_TOKEN and challenge:
-            return challenge  # Must return the challenge exactly
+        if verify_token == "mytoken123":  # replace with your chosen token
+            return challenge
         return "Invalid verification token"
     else:
-        # Handle incoming messages here
         return jsonify(status="ok")
 
 if __name__ == "__main__":
