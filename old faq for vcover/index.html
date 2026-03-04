@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Virgin Cover FAQ Bot</title>
+  <style>
+    body { font-family: Arial; background: #f2f2f2; }
+    .chat { width: 420px; margin: 40px auto; background: #fff; padding: 15px; border-radius: 10px; }
+    .bot { background: #eee; padding: 10px; margin: 8px 0; border-radius: 8px; }
+    .user { background: #dbeafe; padding: 10px; margin: 8px 0; border-radius: 8px; text-align: right; }
+    button { margin: 5px; padding: 8px 12px; border-radius: 6px; border: none; cursor: pointer; }
+  </style>
+</head>
+
+<body>
+<div class="chat" id="chat">
+  <div class="bot">👋 Hi! How can I help you with Virgin  Cover quries today?</div>
+
+  <button onclick="ask('coverage_duration')">How Long Does My Coverage Last?</button>
+  <button onclick="ask('coverage_details')">What's Covered?</button>
+
+  <button onclick="ask('not_covered')">What's Not Covered?</button>
+<button onclick="ask('protection_limits')">What Are the Protection Limits?</button>
+
+<button onclick="ask('claim_process')">How Do You Make a Claim?</button>
+<button onclick="ask('international_claims')">International Claims</button>
+<button onclick="window.open('https://wa.me/' + liveAgentNumber, '_blank')">Chat with Live Agent</button>
+
+</div>
+
+<script>
+const faq = {
+  coverage_duration: {
+    q: "How Long Does My Coverage Last?",
+    a: "Your Virgin Megastore Cover protection starts the day after your manufacturer warranty ends and can last up to 3 years, \n depending on the plan you choose. \n Accidental Damage coverage starts from the date of purchase." 
+  },
+
+  
+  coverage_details: {
+    q: "What's Covered?",
+    a: "Extended Warranty (EW) covers electrical or mechanical breakdowns after your manufacturer warranty expires.  \n Accidental Damage from Handling (ADH) covers sudden damage like drops, spills, or breaks. \n Product attachments like controllers or styluses are also covered  if included in your plan. \n Coverage applies internationally, except in war zones."
+  },
+
+};
+
+faq.not_covered = {
+  q: "What's Not Covered?",
+  a: "Cosmetic damage (scratches, dents, etc.)\nLiquid immersion or combined liquid and physical damage (ADH).\nDamage while the item is left unattended or used improperly.\nPre-existing defects or those covered under manufacturer warranty.\nWear and tear, consumables (e.g. batteries, ink), or routine maintenance.\nDamage due to negligence or unauthorized repairs.\nItems used commercially or for rental.\nSoftware, media, or data loss."
+};
+
+faq.protection_limits = {
+  q: "What Are the Protection Limits?",
+  a: "You can make unlimited claims, up to the value of the product’s purchase price.\n\nWe repair your item at no extra cost. If the repair cost is equal to or more than the current value of the item, you may receive a replacement (minus depreciation and previous repair costs).\n\nDepreciation in the Case of Replacement (VAT excluded):\nEW: 25% within year 1, 40% within year 2, 55% within year 3.\nADH: 25% within year 1, 40% within year 2, 75% within year 3.\nProcessing Fee: For Accidental Damage claims, a flat AED 100 processing fee applies."
+};
+
+faq.claim_process = {
+  q: "How Do You Make a Claim?",
+  a: "Report the issue within 5 days of it happening.\nMake sure the issue isn’t something you can fix using the manufacturer’s guide.\nDrop your item at any Virgin Megastore customer service counter or email us at claims@amnly.com.\nWe’ll guide you from there, including doorstep pickup for larger items.\nRepairs usually take about one week.\nOnce fixed, we’ll deliver it back to the same address.\nRemember to attach your purchase receipt when you submit your request."
+};
+
+faq.international_claims = {
+  q: "International Claims",
+  a: "If a breakdown occurs outside the country of purchase:\nEmail claims@amnly.com \n with a description of the issue and your documents.\nIf the claim is approved, repair the item locally and send us the final invoice.\nReimbursement will be processed by bank transfer, based on the lower value between the invoice and the item’s estimated value in the original country of purchase."
+};
+// Replace this number with your live agent number anytime
+let liveAgentNumber = "971XXXXXXXX"; // Example: +971547263830
+
+
+
+
+function ask(key) {
+  const chat = document.getElementById("chat");
+  chat.innerHTML += `<div class="user">${faq[key].q}</div>`;
+  chat.innerHTML += `<div class="bot">${faq[key].a}</div>`;
+}
+</script>
+</body>
+</html>
